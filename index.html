@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Professional Facilitator Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: sticky numbered rail on the left (navy/teal alternating discs from the slide), one wide content column of seven sections on the right. Single light theme to match the Dubai Health deck. */
+:root {
+  --navy: #0A3A4C;
+  --teal: #00A6A6;
+  --teal-deep: #007579;
+  --bg: #F5FAFD;
+  --card: #FFFFFF;
+  --line: #D3E2EA;
+  --muted: #587280;
+  --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0; background: var(--bg); color: var(--navy);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+}
+.topbar { height: 14px; background: var(--teal); }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+header.hero { padding: 40px 0 28px; }
+.eyebrow {
+  font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-deep);
+  margin: 0 0 10px;
+}
+h1 { font-family: var(--font-display); font-size: clamp(30px, 5vw, 46px); line-height: 1.12; margin: 0 0 18px; text-wrap: balance; }
+.id-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; max-width: 880px; }
+.id-grid label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+.layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 40px; align-items: start; padding-bottom: 56px; }
+nav.rail { position: sticky; top: 20px; }
+nav.rail ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+nav.rail a {
+  display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 12px;
+  padding: 6px 8px; border-radius: 10px; color: var(--navy); text-decoration: none; font-weight: 600; font-size: 15px; line-height: 1.25;
+}
+nav.rail a:hover { background: #E6F1F6; }
+nav.rail a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.disc {
+  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; color: #fff; background: var(--navy);
+}
+.disc.alt { background: var(--teal-deep); }
+.count { font-size: 12px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.count.done { color: var(--teal-deep); }
+.rail-tools { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.rail-tools p { margin: 0; font-size: 13px; color: var(--muted); }
+
+button {
+  font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; border-radius: 9px; padding: 8px 14px;
+  border: 1.5px solid var(--navy); background: var(--card); color: var(--navy);
+}
+button:hover { background: var(--navy); color: #fff; }
+button.primary { background: var(--navy); color: #fff; }
+button.primary:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+button.ghost { border-color: transparent; color: var(--muted); padding: 4px 8px; font-size: 13px; }
+button.ghost:hover { background: #FCE9E6; color: #9B2C1F; }
+
+section.sec { padding: 8px 0 44px; }
+.sec-head { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; margin-bottom: 8px; }
+.sec-head .disc { width: 52px; height: 52px; font-size: 20px; }
+.sec-head h2 { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.sec-lede { margin: 0 0 18px 68px; color: var(--muted); max-width: 66ch; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.entries { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+.entry-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+.entry-title { font-family: var(--font-display); font-size: 14px; letter-spacing: .02em; color: var(--teal-deep); margin: 0; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; }
+.field.wide { grid-column: 1 / -1; }
+.field > .lab { display: block; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+.ed {
+  min-height: 2.4em; padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; background: #F1F7FA;
+  white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5;
+}
+.ed.tall { min-height: 7.5em; }
+.ed:hover { border-color: var(--line); }
+.ed:focus { outline: none; border-color: var(--teal); background: #fff; box-shadow: 0 0 0 3px rgba(0,166,166,.18); }
+.ed:empty::before { content: attr(data-ph); color: #7F96A2; pointer-events: none; }
+select.ed { width: 100%; font: inherit; color: var(--navy); }
+
+.philosophy .fields { grid-template-columns: 1fr; }
+
+.domains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.domain { display: flex; flex-direction: column; gap: 10px; }
+.domain-head { padding: 14px 16px; border-radius: 12px; color: #fff; }
+.domain-head h3 { font-family: var(--font-display); font-size: 17px; margin: 0 0 2px; }
+.domain-head p { margin: 0; font-size: 13px; opacity: .92; }
+.domain:nth-child(1) .domain-head { background: var(--navy); }
+.domain:nth-child(2) .domain-head { background: var(--teal-deep); }
+.domain:nth-child(3) .domain-head { background: #2B6A83; }
+.domain .entries { margin-bottom: 0; gap: 10px; }
+.domain .card { padding: 12px 14px; }
+.domain .fields { grid-template-columns: 1fr; gap: 10px; }
+.domain .add { align-self: flex-start; }
+
+footer.foot { border-top: 1px solid var(--line); padding: 18px 0 28px; color: var(--muted); font-size: 13px; }
+footer.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.toast { min-height: 1.2em; font-size: 13px; color: var(--teal-deep); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 12px; }
+  nav.rail { position: static; }
+  nav.rail ol { flex-direction: row; flex-wrap: wrap; }
+  nav.rail a { grid-template-columns: 30px auto; padding: 4px 10px 4px 4px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
+  nav.rail a .count, nav.rail a .nm { display: none; }
+  .disc { width: 30px; height: 30px; font-size: 13px; }
+  .domains { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .fields { grid-template-columns: 1fr; }
+  .sec-lede { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Capstone integration</p>
+    <h1>Professional Facilitator Portfolio</h1>
+    <div class="id-grid">
+      <div><label for="id-name">Facilitator</label><div class="ed" id="id-name" contenteditable="plaintext-only" data-persist="id-name" data-ph="Your name"></div></div>
+      <div><label for="id-role">Role and setting</label><div class="ed" id="id-role" contenteditable="plaintext-only" data-persist="id-role" data-ph="e.g. Clinical educator, simulation lab"></div></div>
+      <div><label for="id-date">Submission date</label><div class="ed" id="id-date" contenteditable="plaintext-only" data-persist="id-date" data-ph="DD Month YYYY"></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="rail" aria-label="Portfolio sections">
+    <ol id="rail"></ol>
+    <div class="rail-tools">
+      <button class="primary" id="pdf-btn" type="button" hidden>Download as PDF</button>
+      <button id="copy-all" type="button">Copy portfolio as text</button>
+      <button id="clear-all" type="button">Clear all entries</button>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <p>Entries save in this browser only. Download the PDF for your submission, or copy the text as a backup.</p>
+    </div>
+  </nav>
+
+  <main id="main"></main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>HPE702 | Facilitating Learning Experiences in Multiple Settings</span>
+    <span>Dubai Health - Internal Use</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function () {
+  /* ---------- Content model ---------- */
+  var SECTIONS = [
+    { id: 'philosophy', title: 'Personal teaching philosophy', type: 'single',
+      lede: 'A short statement of what you believe about how health professionals learn, and how those beliefs shape what you do in the room.',
+      fields: [
+        ['Beliefs about learning', 'How do adult and health-professional learners build knowledge and skill? Name the theories or experiences that shaped your view.', 'tall'],
+        ['My role as facilitator', 'What do you do, and not do, when you facilitate? How do you share control with learners?', 'tall'],
+        ['Learning climate', 'How do you build psychological safety, respect and inclusion across different settings?', 'tall'],
+        ['Evidence of learning', 'How will you and your learners know that learning has happened?', 'tall']
+      ] },
+    { id: 'plans', title: 'Facilitation session plans', type: 'list', entry: 'Session plan', add: 'Add a session plan',
+      lede: 'Plans you designed and delivered, in classroom, simulation, clinical or online settings. Show the thinking behind each choice.',
+      fields: [
+        ['Session title', 'Title', ''],
+        ['Setting and audience', 'e.g. Simulation lab, 12 nurses', ''],
+        ['Duration', 'e.g. 90 minutes', ''],
+        ['Date delivered', 'DD Month YYYY', ''],
+        ['Learning outcomes', 'By the end, learners will be able to...', 'wide tall'],
+        ['Facilitation methods and sequence', 'Opening, core activities, debrief, with timings.', 'wide tall'],
+        ['Assessment and feedback', 'How did you check learning and give feedback?', 'wide'],
+        ['What I would adjust next time', 'Based on how the session ran.', 'wide']
+      ] },
+    { id: 'peer', title: 'Peer feedback', type: 'list', entry: 'Feedback record', add: 'Add peer feedback',
+      lede: 'Feedback from colleagues who observed or reviewed your facilitation, and what you did with it.',
+      fields: [
+        ['Reviewer', 'Name and role', ''],
+        ['Session observed', 'Title and date', ''],
+        ['Strengths noted', 'What the reviewer saw working well.', 'wide'],
+        ['Suggestions', 'What the reviewer recommended changing.', 'wide'],
+        ['My response and action', 'What you changed, and what happened afterwards.', 'wide tall']
+      ] },
+    { id: 'narratives', title: 'Reflective narratives', type: 'list', entry: 'Reflection', add: 'Add a reflective narrative',
+      lede: 'Reflections that move from what happened to what you will do differently. The prompts follow a Gibbs-style cycle.',
+      fields: [
+        ['Title and date', 'Short title, date', 'wide'],
+        ['Description', 'What happened? Keep to the facts.', 'wide'],
+        ['Feelings', 'What were you thinking and feeling?', ''],
+        ['Evaluation', 'What went well and what did not?', ''],
+        ['Analysis', 'Why did it go that way? What theory or evidence helps explain it?', 'wide tall'],
+        ['Conclusion and action plan', 'What else could you have done? What will you do next time?', 'wide tall']
+      ] },
+    { id: 'incidents', title: 'Critical incident reflections', type: 'list', entry: 'Critical incident', add: 'Add a critical incident',
+      lede: 'Moments that challenged or changed your practice. Describe one event in detail and examine your assumptions.',
+      fields: [
+        ['Incident', 'Where, when, who was involved, what happened?', 'wide tall'],
+        ['Why it was critical', 'What made this moment stand out for you or for learners?', 'wide'],
+        ['What I did and why', 'Your actions and the reasoning at the time.', ''],
+        ['Assumptions I held', 'What beliefs shaped your response?', ''],
+        ['What I learned', 'What do you understand now that you did not before?', 'wide'],
+        ['Change to my practice', 'One concrete change you have made or will make.', 'wide']
+      ] },
+    { id: 'goals', title: 'Professional development goals', type: 'list', entry: 'Goal', add: 'Add a goal',
+      lede: 'Goals for your next stage as a facilitator, written so that someone else could check whether you reached them.',
+      fields: [
+        ['Goal', 'I will...', 'wide'],
+        ['Why it matters', 'Link to your reflections and feedback.', 'wide'],
+        ['Actions and resources', 'Courses, mentors, practice opportunities.', ''],
+        ['Measure of success', 'What evidence will show progress?', ''],
+        ['Target date', 'DD Month YYYY', ''],
+        ['Status', '', 'select']
+      ] },
+    { id: 'evidence', title: 'Evidence across cognitive, psychomotor and affective domains', short: 'Evidence across the three domains', type: 'domains',
+      lede: 'Point to the artefacts above that show your growth in knowledge, skills and attitudes. A balanced portfolio draws on all three.',
+      domains: [
+        ['Cognitive', 'Knowledge, reasoning, planning'],
+        ['Psychomotor', 'Skills, demonstration, technique'],
+        ['Affective', 'Values, attitudes, relationships']
+      ] }
+  ];
+  var SOURCES = ['Philosophy', 'Session plan', 'Peer feedback', 'Reflective narrative', 'Critical incident', 'Development goal', 'Other'];
+  var STATUS = ['Not started', 'In progress', 'Achieved'];
+  var KEY = 'hpe702-portfolio-v1';
+
+  /* ---------- Storage (safe) ---------- */
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  var store = load();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+
+  /* ---------- Rendering ---------- */
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  function field(label, ph, cls, sel) {
+    var wide = /wide/.test(cls) ? ' wide' : '';
+    var tall = /tall/.test(cls) ? ' tall' : '';
+    var body;
+    if (/select/.test(cls)) {
+      body = '<select class="ed" aria-label="' + esc(label) + '">' + STATUS.map(function (o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
+    } else if (sel) {
+      body = '<select class="ed" aria-label="' + esc(label) + '">' + SOURCES.map(function (o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
+    } else {
+      body = '<div class="ed' + tall + '" contenteditable="plaintext-only" role="textbox" aria-multiline="true" aria-label="' + esc(label) + '" data-ph="' + esc(ph) + '"></div>';
+    }
+    return '<div class="field' + wide + '"><span class="lab">' + esc(label) + '</span>' + body + '</div>';
+  }
+  function entryHTML(s, n) {
+    return '<article class="card entry"><div class="entry-head"><h3 class="entry-title"><span class="n">' + esc(s.entry) + ' ' + n + '</span></h3>' +
+      '<button class="ghost del" type="button">Remove</button></div><div class="fields">' +
+      s.fields.map(function (f) { return field(f[0], f[1], f[2]); }).join('') + '</div></article>';
+  }
+  function evidenceHTML(domain) {
+    return '<article class="card entry"><div class="entry-head"><h3 class="entry-title">' + esc(domain) + ' evidence</h3><button class="ghost del" type="button">Remove</button></div><div class="fields">' +
+      field('What it shows', 'Describe the evidence in one or two sentences.', 'wide tall') +
+      field('Source in portfolio', '', 'wide', true) + '</div></article>';
+  }
+  function renumber(box, s) {
+    if (!s) return;
+    Array.prototype.forEach.call(box.querySelectorAll('.entry'), function (el, i) {
+      var n = el.querySelector('.n'); if (n) n.textContent = s.entry + ' ' + (i + 1);
+    });
+  }
+
+  var rail = document.getElementById('rail');
+  var main = document.getElementById('main');
+  var railHTML = '', mainHTML = '';
+  SECTIONS.forEach(function (s, i) {
+    var num = i + 1, alt = num % 2 === 0 ? ' alt' : '';
+    railHTML += '<li><a href="#' + s.id + '" data-sec="' + s.id + '"><span class="disc' + alt + '">' + num + '</span><span class="nm">' + esc(s.short || s.title) + '</span><span class="count" data-count="' + s.id + '"></span></a></li>';
+    var inner = '';
+    if (s.type === 'single') {
+      inner = '<div class="card philosophy"><div class="fields">' + s.fields.map(function (f) { return field(f[0], f[1], f[2]); }).join('') + '</div></div>';
+    } else if (s.type === 'list') {
+      inner = '<div class="entries" data-box="' + s.id + '"></div><button type="button" class="add" data-add="' + s.id + '">+ ' + esc(s.add) + '</button>';
+    } else {
+      inner = '<div class="domains">' + s.domains.map(function (d, k) {
+        return '<div class="domain"><div class="domain-head"><h3>' + d[0] + '</h3><p>' + d[1] + '</p></div>' +
+          '<div class="entries" data-box="' + s.id + '-' + k + '"></div><button type="button" class="add" data-add-domain="' + s.id + '-' + k + '" data-domain="' + d[0] + '">+ Add ' + d[0].toLowerCase() + ' evidence</button></div>';
+      }).join('') + '</div>';
+    }
+    mainHTML += '<section class="sec" id="' + s.id + '" data-s="' + s.id + '"><div class="sec-head"><span class="disc' + alt + '">' + num + '</span><h2>' + esc(s.title) + '</h2></div><p class="sec-lede">' + esc(s.lede) + '</p>' + inner + '</section>';
+  });
+  rail.innerHTML = railHTML;
+  main.innerHTML = mainHTML;
+
+  /* ---------- Persistence of editable regions ---------- */
+  // Each persisted region is either a static field (data-persist) or an entries box (data-box).
+  function snapshotFields(root) {
+    var out = [];
+    Array.prototype.forEach.call(root.querySelectorAll('.ed'), function (el) {
+      out.push(el.tagName === 'SELECT' ? el.selectedIndex : el.textContent);
+    });
+    return out;
+  }
+  function boxKey(box) { return 'box:' + box.getAttribute('data-box'); }
+  function saveBox(box) {
+    var items = [];
+    Array.prototype.forEach.call(box.querySelectorAll('.entry'), function (en) { items.push(snapshotFields(en)); });
+    store[boxKey(box)] = items; save();
+  }
+  function fill(entry, vals) {
+    var eds = entry.querySelectorAll('.ed');
+    for (var i = 0; i < eds.length && i < vals.length; i++) {
+      if (eds[i].tagName === 'SELECT') eds[i].selectedIndex = vals[i] || 0; else eds[i].textContent = vals[i] || '';
+    }
+  }
+  function addEntry(box, vals) {
+    var id = box.getAttribute('data-box');
+    var tmp = document.createElement('div');
+    var s = SECTIONS.filter(function (x) { return x.id === id; })[0];
+    if (s) { tmp.innerHTML = entryHTML(s, 1); }
+    else { var k = id.split('-')[1]; tmp.innerHTML = evidenceHTML(SECTIONS[6].domains[k][0]); }
+    var en = tmp.firstChild; box.appendChild(en);
+    if (vals) fill(en, vals);
+    renumber(box, s);
+    return en;
+  }
+
+  // Restore
+  Array.prototype.forEach.call(document.querySelectorAll('.entries'), function (box) {
+    var saved = store[boxKey(box)];
+    if (saved && saved.length) saved.forEach(function (v) { addEntry(box, v); });
+    else if (box.getAttribute('data-box').indexOf('evidence') !== 0) addEntry(box);
+  });
+  // Static fields: philosophy card and identity inputs
+  var staticEds = [];
+  Array.prototype.forEach.call(document.querySelectorAll('#philosophy .ed'), function (el, i) { el.setAttribute('data-persist', 'phil-' + i); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-persist]'), function (el) {
+    var v = store['f:' + el.getAttribute('data-persist')]; if (v) el.textContent = v;
+  });
+
+  /* ---------- Progress counts ---------- */
+  function updateCounts() {
+    SECTIONS.forEach(function (s) {
+      var sec = document.getElementById(s.id), eds = sec.querySelectorAll('.ed');
+      var total = 0, filled = 0;
+      Array.prototype.forEach.call(eds, function (el) {
+        if (el.tagName === 'SELECT') return;
+        total++; if (el.textContent.trim()) filled++;
+      });
+      var c = document.querySelector('[data-count="' + s.id + '"]');
+      if (s.type === 'domains') {
+        var used = 0;
+        s.domains.forEach(function (d, k) {
+          var b = document.querySelector('[data-box="' + s.id + '-' + k + '"]');
+          var any = Array.prototype.some.call(b.querySelectorAll('.entry'), function (en) { return en.querySelector('.ed').textContent.trim(); });
+          if (any) used++;
+        });
+        c.textContent = used + '/3'; c.className = 'count' + (used === 3 ? ' done' : '');
+      } else if (total === 0) { c.textContent = ''; }
+      else {
+        c.textContent = s.type === 'single' ? filled + '/' + total : (filled ? '✓' : '');
+        c.className = 'count' + (filled === total || (s.type === 'list' && filled) ? ' done' : '');
+      }
+    });
+  }
+
+  /* ---------- Events ---------- */
+  document.addEventListener('input', function (e) {
+    var el = e.target;
+    var p = el.getAttribute && el.getAttribute('data-persist');
+    if (p) { store['f:' + p] = el.textContent; save(); }
+    var box = el.closest && el.closest('.entries');
+    if (box) saveBox(box);
+    updateCounts();
+  });
+  document.addEventListener('change', function (e) {
+    var box = e.target.closest && e.target.closest('.entries'); if (box) saveBox(box);
+    updateCounts();
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var a = t.getAttribute && t.getAttribute('data-add');
+    var ad = t.getAttribute && t.getAttribute('data-add-domain');
+    if (a) {
+      var box = document.querySelector('[data-box="' + a + '"]');
+      var en = addEntry(box); saveBox(box); var f = en.querySelector('.ed'); if (f) f.focus(); updateCounts();
+    } else if (ad) {
+      var b2 = document.querySelector('[data-box="' + ad + '"]');
+      var en2 = addEntry(b2); saveBox(b2); en2.querySelector('.ed').focus(); updateCounts();
+    } else if (t.classList && t.classList.contains('del')) {
+      var entry = t.closest('.entry'), bx = entry.parentNode;
+      entry.remove();
+      var sid = bx.getAttribute('data-box');
+      var s = SECTIONS.filter(function (x) { return x.id === sid; })[0];
+      renumber(bx, s); saveBox(bx); updateCounts();
+    }
+  });
+
+  var toastEl = document.getElementById('toast'), tt;
+  function toast(msg) { toastEl.textContent = msg; clearTimeout(tt); tt = setTimeout(function () { toastEl.textContent = ''; }, 3500); }
+
+  function portfolioText() {
+    var lines = ['PROFESSIONAL FACILITATOR PORTFOLIO', 'HPE702 | Facilitating Learning Experiences in Multiple Settings', ''];
+    ['id-name', 'id-role', 'id-date'].forEach(function (id) {
+      var el = document.getElementById(id), lab = document.querySelector('label[for="' + id + '"]').textContent;
+      lines.push(lab + ': ' + (el.textContent.trim() || '-'));
+    });
+    SECTIONS.forEach(function (s, i) {
+      lines.push('', (i + 1) + '. ' + s.title.toUpperCase(), '');
+      var sec = document.getElementById(s.id);
+      var entries = sec.querySelectorAll('.entry');
+      if (s.type === 'single') {
+        Array.prototype.forEach.call(sec.querySelectorAll('.field'), function (f) {
+          lines.push(f.querySelector('.lab').textContent + ': ' + (f.querySelector('.ed').textContent.trim() || '-'));
+        });
+      } else {
+        Array.prototype.forEach.call(entries, function (en) {
+          lines.push('[' + en.querySelector('.entry-title').textContent + ']');
+          Array.prototype.forEach.call(en.querySelectorAll('.field'), function (f) {
+            var ed = f.querySelector('.ed');
+            var v = ed.tagName === 'SELECT' ? ed.value : ed.textContent.trim();
+            lines.push(f.querySelector('.lab').textContent + ': ' + (v || '-'));
+          });
+          lines.push('');
+        });
+      }
+    });
+    return lines.join('\n');
+  }
+  document.getElementById('copy-all').addEventListener('click', function () {
+    var text = portfolioText();
+    try {
+      navigator.clipboard.writeText(text).then(function () { toast('Portfolio copied.'); }, fallback);
+    } catch (err) { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e2) {}
+      document.body.removeChild(ta);
+      toast(ok ? 'Portfolio copied.' : 'Copy was blocked. Select the text on the page and copy it manually.');
+    }
+  });
+  document.getElementById('clear-all').addEventListener('click', function () {
+    var btn = this;
+    if (btn.getAttribute('data-armed') !== '1') {
+      btn.setAttribute('data-armed', '1'); btn.textContent = 'Click again to confirm';
+      setTimeout(function () { btn.removeAttribute('data-armed'); btn.textContent = 'Clear all entries'; }, 4000);
+      return;
+    }
+    store = {}; save(); location.reload();
+  });
+
+  /* ---------- PDF export ---------- */
+  function pdfSafe(s, flag) {
+    var out = String(s)
+      .replace(/[‘’‚]/g, "'").replace(/[“”„]/g, '"')
+      .replace(/[–—]/g, '-').replace(/…/g, '...').replace(/[•●]/g, '-')
+      .replace(/ /g, ' ').replace(/\r/g, '');
+    return out.replace(/[^\n\t\x20-\x7E¡-ÿ]/g, function () { flag.bad = true; return '?'; });
+  }
+  function buildPdf() {
+    var JsPDF = window.jspdf && window.jspdf.jsPDF;
+    if (!JsPDF) throw new Error('lib');
+    var doc = new JsPDF({ unit: 'mm', format: 'a4' });
+    var W = 210, H = 297, M = 18, TOP = 22, BOTTOM = 18, CW = W - 2 * M;
+    var NAVY = [10, 58, 76], TEAL = [0, 117, 121], MUTED = [88, 114, 128];
+    var flag = { bad: false }, y = TOP;
+    function ensure(h) { if (y + h > H - BOTTOM) { doc.addPage(); y = TOP; } }
+    function lines(text, size, width) { doc.setFontSize(size); return doc.splitTextToSize(text, width); }
+    function para(text, size, color, bold, indent) {
+      doc.setFont('helvetica', bold ? 'bold' : 'normal'); doc.setFontSize(size); doc.setTextColor(color[0], color[1], color[2]);
+      var lh = size * 0.40;
+      lines(text, size, CW - (indent || 0)).forEach(function (ln) { ensure(lh); y += lh; doc.text(ln, M + (indent || 0), y); y += 0.9; });
+    }
+    function val(el) { return el.tagName === 'SELECT' ? el.value : el.textContent.trim(); }
+    function dateTxt() { return new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+    // Title block
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(TEAL[0], TEAL[1], TEAL[2]);
+    doc.text('CAPSTONE INTEGRATION', M, y + 2, { charSpace: 0.6 }); y += 9;
+    doc.setFontSize(24); doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
+    doc.text('Professional Facilitator Portfolio', M, y + 6); y += 13;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(MUTED[0], MUTED[1], MUTED[2]);
+    doc.text('HPE702 | Facilitating Learning Experiences in Multiple Settings', M, y + 2); y += 9;
+    [['id-name', 'Facilitator'], ['id-role', 'Role and setting'], ['id-date', 'Submission date']].forEach(function (p) {
+      var v = document.getElementById(p[0]).textContent.trim();
+      if (!v && p[0] === 'id-date') v = dateTxt();
+      if (!v) return;
+      ensure(6); doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
+      doc.text(p[1] + ':', M, y + 4);
+      doc.setFont('helvetica', 'normal'); doc.text(pdfSafe(v, flag), M + 38, y + 4); y += 6;
+    });
+    y += 4;
+
+    SECTIONS.forEach(function (s, i) {
+      var sec = document.getElementById(s.id), blocks = [];
+      if (s.type === 'single') {
+        var fs = [];
+        Array.prototype.forEach.call(sec.querySelectorAll('.field'), function (f) {
+          var v = val(f.querySelector('.ed')); if (v) fs.push([f.querySelector('.lab').textContent, v]);
+        });
+        if (fs.length) blocks.push({ title: '', fields: fs });
+      } else {
+        Array.prototype.forEach.call(sec.querySelectorAll('.entry'), function (en) {
+          var fs = [];
+          Array.prototype.forEach.call(en.querySelectorAll('.field'), function (f) {
+            var ed = f.querySelector('.ed'), v = val(ed);
+            if (!v || (ed.tagName === 'SELECT' && !Array.prototype.some.call(en.querySelectorAll('div.ed'), function (d) { return d.textContent.trim(); }))) return;
+            fs.push([f.querySelector('.lab').textContent, v]);
+          });
+          if (fs.length) {
+            var dom = en.closest('.domain');
+            blocks.push({ title: dom ? dom.querySelector('.domain-head h3').textContent : en.querySelector('.entry-title').textContent, fields: fs });
+          }
+        });
+      }
+
+      // Section heading
+      ensure(30); y += 5;
+      var cx = M + 5, cy = y + 5;
+      doc.setFillColor.apply(doc, (i % 2 ? TEAL : NAVY)); doc.circle(cx, cy, 5, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(255, 255, 255);
+      doc.text(String(i + 1), cx, cy + 1.4, { align: 'center' });
+      doc.setFontSize(14); doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
+      var ht = doc.splitTextToSize(pdfSafe(s.title, flag), CW - 14);
+      ht.forEach(function (ln, k) { doc.text(ln, M + 13, cy + 1.6 + k * 6); });
+      y += 10 + (ht.length - 1) * 6;
+      doc.setDrawColor(211, 226, 234); doc.setLineWidth(0.3); doc.line(M, y, W - M, y); y += 2;
+
+      if (!blocks.length) { para('Not yet completed.', 10, MUTED, false); y += 2; return; }
+      blocks.forEach(function (b) {
+        if (b.title) { ensure(14); y += 3; para(pdfSafe(b.title, flag), 10, TEAL, true); }
+        b.fields.forEach(function (f) {
+          ensure(14); y += 2;
+          para(pdfSafe(f[0].toUpperCase(), flag), 7.5, MUTED, true);
+          para(pdfSafe(f[1], flag), 10.5, NAVY, false);
+        });
+        y += 2;
+      });
+    });
+
+    // Header bar and footer on every page
+    var n = doc.getNumberOfPages();
+    for (var p = 1; p <= n; p++) {
+      doc.setPage(p);
+      doc.setFillColor(0, 166, 166); doc.rect(0, 0, W, 5, 'F');
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(MUTED[0], MUTED[1], MUTED[2]);
+      doc.text('HPE702 | Facilitating Learning Experiences in Multiple Settings', M, H - 9);
+      doc.text('Dubai Health - Internal Use    ' + p + ' / ' + n, W - M, H - 9, { align: 'right' });
+    }
+    return { doc: doc, bad: flag.bad };
+  }
+
+  var pdfBtn = document.getElementById('pdf-btn');
+  var dl = null;
+  (function () {
+    try {
+      if (window.claude && window.claude.use) {
+        // Inside Claude: use the platform's save prompt.
+        window.claude.use('downloads').then(function (d) { if (d) { dl = d; pdfBtn.hidden = false; } }, function () {});
+      } else {
+        // Regular website (e.g. GitHub Pages): normal browser download.
+        pdfBtn.hidden = false;
+      }
+    } catch (e) { pdfBtn.hidden = false; }
+  })();
+  pdfBtn.addEventListener('click', function () {
+    var res;
+    try { res = buildPdf(); } catch (e) { toast('The PDF library did not load. Reload the page and try again.'); return; }
+    var name = (document.getElementById('id-name').textContent.trim() || 'Facilitator').replace(/[^A-Za-z0-9 _-]/g, '').trim().replace(/\s+/g, '_');
+    if (!dl) {
+      try { res.doc.save('Facilitator_Portfolio_' + name + '.pdf'); toast(res.bad ? 'PDF downloaded. Characters outside English and Western European text show as "?".' : 'PDF downloaded.'); }
+      catch (e) { toast('The PDF could not be created. Try the text copy instead.'); }
+      return;
+    }
+    var blob = res.doc.output('blob');
+    dl.save({ filename: 'Facilitator_Portfolio_' + name + '.pdf', data: blob }).then(function () {
+      toast(res.bad ? 'PDF saved. Characters outside English and Western European text show as "?".' : 'PDF saved.');
+    }, function (err) {
+      var c = err && err.code;
+      toast(c === 'declined' ? 'Download cancelled.' : 'Downloading is not available in this view. Open the portfolio in claude.ai, or copy the text instead.');
+    });
+  });
+
+  updateCounts();
+})();
+</script>
+</body>
+</html>
